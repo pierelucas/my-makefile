@@ -53,7 +53,8 @@ make_target_dir:
 	mkdir -p bin
 
 # Clean and build the Target
-all: make_target_dir $(TARGET) 
+all: make_target_dir $(TARGET)
+	@echo $(TARGET) successfully compiled!
 # Link object files
 $(TARGET_DIR)/$(TARGET): $(OBJ)
 	$(LD) $(LDFLAGS) $^ -o $@
