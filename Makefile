@@ -2,10 +2,10 @@
 # Autor: Julian Huch
 
 # Target Name
-TARGET := buildedBinary 
+TARGET 		:= buildedBinary 
 
 # Target directory
-TARGET_DIR = bin
+TARGET_DIR 	:= bin
 
 # Compiler
 CXX 		:= gcc
