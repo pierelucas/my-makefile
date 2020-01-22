@@ -4,8 +4,8 @@
 # Target Name
 TARGET := buildedBinary 
 
-# Phony Targets
-.PHONY: all check checkstyle valgrind clean make_target_dir
+# Target directory
+TARGET_DIR = bin
 
 # Compiler
 CXX 		:= gcc
@@ -47,26 +47,28 @@ OBJ 		:= $(patsubst %.c,%.o,$(SRC))
 # Dependencies
 DEP 		:= $(patsubst %.c,%.d,$(SRC))
 
-# Target directory
-TARGET_DIR = bin
-make_target_dir:
-	mkdir -p bin
+# Phony Targets
+.PHONY: all check checkstyle valgrind clean make_target_directory
 
 # Clean and build the Target
-all: make_target_dir $(TARGET)
+all: make_target_directory $(TARGET)
 	@echo $(TARGET) successfully compiled!
 # Link object files
-$(TARGET_DIR)/$(TARGET): $(OBJ)
-	$(LD) $(LDFLAGS) $^ -o $@
+$(TARGET): $(OBJ)
+	$(LD) $(LDFLAGS) $^ -o $(TARGET_DIR)/$@
 # Compile object files from source files
 %.o: %.c
 	$(CXX) $(CCFLAGS) $(INCDIRS) -c $< -o $@
 # Build dependencie files
 %.d: %.c
 	$(CXX) $(INCDIRS) -MM $< > $@
+	
+# make target directory
+make_target_directory:
+	mkdir -p $(TARGET_DIR)
 
 # Check for style, Build the Target, Check for memory errors
-check: clean make_target_dir checkstyle all valgrind
+check: clean checkstyle all valgrind
 # Check for style with cpplinter
 checkstyle:
 	python2 ./cpplint.py $(SRC) $(HEAD) 
