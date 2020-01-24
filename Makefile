@@ -21,7 +21,7 @@ OPT 		:= -O0
 # Warnings
 WARN 		:= -Wall -Wextra -Weffc++ -pedantic 
 # Threading
-PTRHEAD 	:= -pthread
+PTHREAD 	:= -pthread
 # Include
 INCDIRS 	:= -I.
 
@@ -34,9 +34,9 @@ GLIB 		:= `pkg-config --cflags --libs glib-2.0`
 CURSES 		:= -lcurses
 
 # Compiler flags
-CCFLAGS 	:= $(OPT) $(WARN) $(PTRHEAD) $(STAND) -pipe
+CCFLAGS 	:= $(OPT) $(WARN) $(PTHREAD) $(STAND) -pipe
 # Linker flags
-LDFLAGS 	:= $(PTRHEAD) -export-dynamic
+LDFLAGS 	:= $(PTHREAD) -export-dynamic
 
 # Source Code
 SRC 		:= $(wildcard *.c) $(wildcard **/*.c)
