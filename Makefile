@@ -19,7 +19,7 @@ DEBUG 		:= -g
 # optimisation
 OPT 		:= -O0
 # Warnings
-WARN 		:= -Wall -Weffc++ -pedantic 
+WARN 		:= -Wall -Wextra -Weffc++ -pedantic 
 # Threading
 PTRHEAD 	:= -pthread
 # Include
